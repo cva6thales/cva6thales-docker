@@ -9,4 +9,6 @@ FROM cva6thales/cva6thales:base
 ADD resources/toolchain-builder.tar.xz /opt/toolchain-builder
 
 # Run the toolchain builder.
-RUN cd /opt/toolchain-builder/toolchain && sh get-toolchain.sh gcc-10.2.0-baremetal && sh build-toolchain.sh gcc-10.2.0-baremetal /opt/riscv/toolchain
+RUN cd /opt/toolchain-builder/toolchain
+RUN sh get-toolchain.sh gcc-10.2.0-baremetal
+RUN sh build-toolchain.sh gcc-10.2.0-baremetal /opt/riscv/toolchain
