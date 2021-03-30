@@ -1,0 +1,12 @@
+#FROM riscv-debian-buster:base
+FROM cva6thales/cva6thales:base
+# For Invia (ISSM) Gitlab CI, install gemalto business Root CA:
+# RUN  mkdir -p /usr/local/share/ca-certificates/Gemalto/
+# COPY GemaltoBusinessRootCertificateAuthority.crt /usr/local/share/ca-certificates/Gemalto/GemaltoBusinessRootCA.crt
+# RUN  update-ca-certificates
+
+# Install the toolchain builder scripts.
+ADD resources/toolchain-builder.tar.xz /opt/toolchain-builder
+
+# Run the toolchain builder.
+RUN cd /opt/toolchain-builder/toolchain && sh get-toolchain.sh gcc-10.2.0-baremetal && sh build-toolchain.sh gcc-10.2.0-baremetal /opt/riscv/toolchain
